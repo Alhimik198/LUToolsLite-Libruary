@@ -1,3 +1,70 @@
+LUToolsLite – Image Processing Library for 3D LUT Application and Generation
+LUToolsLite is a lightweight, high-performance C++ image processing library designed to apply and generate 3D LUTs (Look-Up Tables) for color grading tasks in photography and video editing workflows.
+
+It is built for integration into Python, C++, or other native applications via DLL/shared library usage and exposes a clean C-style API for ease of cross-language binding.
+
+ Key Features
+ 1. LUT Application
+Apply one or more 3D LUTs to images from disk or memory.
+
+Supports blending LUTs (0.0–1.0 blend strength).
+
+Chain multiple LUTs sequentially on a single image.
+
+Adjust additional parameters:
+
+White balance
+
+Tint
+
+Brightness
+
+Contrast
+
+Saturation
+
+ 2. Image I/O and Processing
+Load and save JPEG images with built-in STB support.
+
+Resize images to a specified dimension or fit within bounding box (preserving aspect ratio).
+
+Efficient memory-aligned allocations for SIMD compatibility.
+
+ 3. SIMD Acceleration
+Leverages AVX2 SIMD instructions for fast image processing on supported CPUs.
+
+Automatically falls back to scalar processing if AVX2 is not available.
+
+ 4. LUT Generation
+Generate custom 3D LUTs by comparing before/after image pairs.
+
+Uses K-Nearest Neighbors to interpolate transformed color mappings.
+
+Supports output in .CUBE format (LUT_3D_SIZE 16/32/64).
+
+ 5. Preview Support
+Generate resized previews (fixed size or fit mode) with LUTs and adjustments applied.
+
+Useful for UI integrations or quick validation.
+
+ 6. Batch File Processing
+Process entire batches of image files using one or more LUTs with full parameter control.
+
+Optional callbacks for logging and real-time progress tracking.
+
+ 7. Memory and Error Management
+All allocated buffers returned to the caller must be released via LUTools_FreeMemory.
+
+Error reporting via LUTools_GetLastErrorMessage() allows easy diagnostics.
+
+ 8. Callbacks
+Log messages and progress updates via user-supplied callbacks.
+
+ Integration
+LUToolsLite is designed to be embedded into other systems. It is available as a shared library (DLL on Windows) and is easily callable via Python’s ctypes, C/C++, or any language capable of calling C-style exports.
+
+
+
 Data Types
 
 LogCallbackType = CFUNCTYPE(None, c_char_p, c_int, c_void_p)
